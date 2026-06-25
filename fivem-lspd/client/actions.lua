@@ -93,8 +93,8 @@ end)
 
 -- ── Radar vitesse ─────────────────────────────────
 function PoliceRadar()
-    local ped     = PlayerPedId()
-    local coords  = GetEntityCoords(ped)
+    local ped    = PlayerPedId()
+    local coords = GetEntityCoords(ped)
     local heading = GetEntityHeading(ped)
 
     local model = `prop_roadcone02a`
@@ -111,6 +111,7 @@ function PoliceRadar()
     lib.notify({ title = 'LSPD', description = 'Radar positionné.', type = 'success' })
     TriggerServerEvent('lspd:radarLog')
 
+    -- auto-remove after 5 min
     SetTimeout(300000, function()
         if DoesEntityExist(obj) then DeleteObject(obj) end
     end)
@@ -158,8 +159,8 @@ end
 
 -- ── Hérissons ─────────────────────────────────────
 function PoliceSpike()
-    local ped     = PlayerPedId()
-    local coords  = GetEntityCoords(ped)
+    local ped    = PlayerPedId()
+    local coords = GetEntityCoords(ped)
     local heading = GetEntityHeading(ped)
 
     if spikeStrip and DoesEntityExist(spikeStrip) then
