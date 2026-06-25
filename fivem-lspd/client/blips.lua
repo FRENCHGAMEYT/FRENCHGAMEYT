@@ -27,85 +27,64 @@ end
 function InitZones()
     for zoneId, loc in pairs(Config.Locations) do
 
-        -- Zone vestiaire
+        -- Zone vestiaire — prise de service + tenues
         activeZones[#activeZones + 1] = lib.zones.sphere({
-            coords   = loc.clothingPoint,
-            radius   = Config.SpawnDistance,
-            debug    = false,
-            onEnter  = function()
+            coords  = loc.clothingPoint,
+            radius  = Config.SpawnDistance,
+            debug   = false,
+            onEnter = function()
                 if not IsPolice() then return end
-                lib.showTextUI('[' .. Config.MenuKey .. '] Vestiaire LSPD', {
-                    position = 'left-center', icon = 'shirt',
-                })
+                local txt = IsOnDuty()
+                    and '[E] Vestiaire / Fin de service'
+                    or  '[E] Vestiaire / Prise de service'
+                lib.showTextUI(txt, { position = 'left-center', icon = 'shirt' })
             end,
-            onExit   = function()
-                lib.hideTextUI()
-            end,
-            inside   = function()
+            onExit  = function() lib.hideTextUI() end,
+            inside  = function()
                 if not IsPolice() then return end
-                if IsControlJustReleased(0, GetControlIdForName('keyboard', Config.MenuKey)) then
-                    if IsOnDuty() then OpenOutfitMenu() end
+                if IsControlJustReleased(0, 38) then -- E
+                    if IsOnDuty() then
+                        OpenOutfitMenu()
+                    else
+                        ToggleDuty()
+                    end
                 end
             end,
         })
 
-        -- Zone garage
+        -- Zone garage — véhicules uniquement depuis ici
         activeZones[#activeZones + 1] = lib.zones.sphere({
-            coords   = loc.vehiclePoint,
-            radius   = Config.SpawnDistance,
-            debug    = false,
-            onEnter  = function()
-                if not IsPolice() then return end
-                lib.showTextUI('[' .. Config.MenuKey .. '] Garage LSPD', {
-                    position = 'left-center', icon = 'car',
-                })
+            coords  = loc.vehiclePoint,
+            radius  = Config.SpawnDistance,
+            debug   = false,
+            onEnter = function()
+                if not IsPolice() or not IsOnDuty() then return end
+                lib.showTextUI('[E] Garage LSPD', { position = 'left-center', icon = 'car' })
             end,
-            onExit   = function()
-                lib.hideTextUI()
-            end,
-            inside   = function()
-                if not IsPolice() then return end
-                if IsControlJustReleased(0, GetControlIdForName('keyboard', Config.MenuKey)) then
-                    if IsOnDuty() then OpenVehicleMenu() end
+            onExit  = function() lib.hideTextUI() end,
+            inside  = function()
+                if not IsPolice() or not IsOnDuty() then return end
+                if IsControlJustReleased(0, 38) then
+                    OpenVehicleMenu()
                 end
             end,
         })
 
         -- Zone armurerie
         activeZones[#activeZones + 1] = lib.zones.sphere({
-            coords   = loc.armoryPoint,
-            radius   = Config.SpawnDistance,
-            debug    = false,
-            onEnter  = function()
-                if not IsPolice() then return end
-                lib.showTextUI('[' .. Config.MenuKey .. '] Armurerie LSPD', {
-                    position = 'left-center', icon = 'gun',
-                })
+            coords  = loc.armoryPoint,
+            radius  = Config.SpawnDistance,
+            debug   = false,
+            onEnter = function()
+                if not IsPolice() or not IsOnDuty() then return end
+                lib.showTextUI('[E] Armurerie LSPD', { position = 'left-center', icon = 'gun' })
             end,
-            onExit   = function()
-                lib.hideTextUI()
-            end,
-            inside   = function()
-                if not IsPolice() then return end
-                if IsControlJustReleased(0, GetControlIdForName('keyboard', Config.MenuKey)) then
-                    if IsOnDuty() then OpenArmoryMenu() end
+            onExit  = function() lib.hideTextUI() end,
+            inside  = function()
+                if not IsPolice() or not IsOnDuty() then return end
+                if IsControlJustReleased(0, 38) then
+                    OpenArmoryMenu()
                 end
-            end,
-        })
-
-        -- Zone prise de service
-        activeZones[#activeZones + 1] = lib.zones.sphere({
-            coords   = loc.dutyPoint,
-            radius   = Config.SpawnDistance,
-            debug    = false,
-            onEnter  = function()
-                if not IsPolice() then return end
-                lib.showTextUI('[' .. Config.DutyKey .. '] Prise / Fin de service', {
-                    position = 'left-center', icon = 'shield-halved',
-                })
-            end,
-            onExit   = function()
-                lib.hideTextUI()
             end,
         })
     end

@@ -2,9 +2,9 @@
 --  LSPD — Client Main
 -- ╚══════════════════════════════════════════════╝
 
-local playerData   = {}
-local isOnDuty     = false
-local currentUnit  = nil
+local playerData     = {}
+local isOnDuty       = false
+local currentUnit    = nil
 local spawnedVehicle = nil
 
 -- ── Initialisation selon le framework ────────────
@@ -66,7 +66,7 @@ function GetGradeLabel()
     return Config.Grades[grade] and Config.Grades[grade].label or 'Inconnu'
 end
 
--- ── Prise / fin de service ───────────────────────
+-- ── Prise / fin de service (uniquement au vestiaire) ─
 function ToggleDuty()
     if not IsPolice() then return end
 
@@ -94,17 +94,10 @@ function ToggleDuty()
     end
 end
 
--- ── Touche de service ────────────────────────────
-RegisterCommand('lspdduty', function()
-    ToggleDuty()
-end, false)
-
-RegisterKeyMapping('lspdduty', 'LSPD — Prise / fin de service', 'keyboard', Config.DutyKey)
-
--- ── Touche menu ──────────────────────────────────
+-- ── Touche menu F6 ────────────────────────────────
 RegisterCommand('lspdmenu', function()
     if not IsPolice() then return end
-    OpenMainMenu()
+    OpenNUIMenu()
 end, false)
 
 RegisterKeyMapping('lspdmenu', 'LSPD — Menu Principal', 'keyboard', Config.MenuKey)
@@ -115,11 +108,11 @@ RegisterNetEvent('lspd:onDutySync', function(state)
 end)
 
 -- ── Getters exposés ──────────────────────────────
-function IsOnDuty()   return isOnDuty   end
-function GetCurrentUnit() return currentUnit end
-function SetCurrentUnit(u) currentUnit = u end
-function GetSpawnedVehicle() return spawnedVehicle end
-function SetSpawnedVehicle(v) spawnedVehicle = v end
+function IsOnDuty()          return isOnDuty       end
+function GetCurrentUnit()    return currentUnit     end
+function SetCurrentUnit(u)   currentUnit = u        end
+function GetSpawnedVehicle() return spawnedVehicle  end
+function SetSpawnedVehicle(v) spawnedVehicle = v    end
 
 -- ── Démarrage ─────────────────────────────────────
 AddEventHandler('onClientResourceStart', function(resource)

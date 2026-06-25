@@ -709,6 +709,17 @@ Config.Locations = {
         vehicleHeading = 0.0,
         armoryPoint    = vector3(-452.0, 6006.0, 31.7),
     },
+    vespucci = {
+        label = 'Poste Vespucci',
+        coords = vector3(-1096.2, -845.5, 19.3),
+        heading = 325.0,
+        blip = { sprite = 60, color = 3, scale = 0.7, label = 'LSPD — Vespucci' },
+        dutyPoint      = vector3(-1096.2, -845.5, 19.3),
+        clothingPoint  = vector3(-1093.0, -848.0, 19.3),
+        vehiclePoint   = vector3(-1107.0, -840.0, 19.3),
+        vehicleHeading = 325.0,
+        armoryPoint    = vector3(-1090.0, -842.0, 19.3),
+    },
 }
 
 Config.UI = {
