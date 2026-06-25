@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LSPD Menu</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="lspd-overlay" class="hidden">
+        <div id="lspd-panel">
+            <div id="panel-header">
+                <div class="header-badge"><img src="img/badge.svg" alt="LSPD" id="badge-icon"></div>
+                <div class="header-info">
+                    <h1>L.S.P.D.</h1>
+                    <p id="header-subtitle">Los Santos Police Department</p>
+                </div>
+                <button id="close-btn" title="Fermer">&#x2715;</button>
+            </div>
+            <div id="status-bar">
+                <span id="status-badge" class="badge badge-offline">HORS SERVICE</span>
+                <span id="grade-label">—</span>
+                <span id="unit-label">Aucune unité</span>
+            </div>
+            <nav id="tab-nav">
+                <button class="tab-btn active" data-tab="units">Unités</button>
+                <button class="tab-btn" data-tab="outfits">Tenues</button>
+                <button class="tab-btn" data-tab="vehicles">Garage</button>
+                <button class="tab-btn" data-tab="armory">Armurerie</button>
+                <button class="tab-btn" data-tab="info">Profil</button>
+            </nav>
+            <div id="tab-content">
+                <div class="tab-pane active" id="tab-units"><div class="grid-cards" id="units-grid"></div></div>
+                <div class="tab-pane" id="tab-outfits"><div class="grid-cards" id="outfits-grid"></div></div>
+                <div class="tab-pane" id="tab-vehicles"><div id="vehicle-categories"></div></div>
+                <div class="tab-pane" id="tab-armory"><div class="list-items" id="armory-list"></div></div>
+                <div class="tab-pane" id="tab-info">
+                    <div class="profile-card">
+                        <div class="profile-avatar">👮</div>
+                        <div class="profile-details">
+                            <div class="detail-row"><span>Matricule</span><strong id="info-matricule">—</strong></div>
+                            <div class="detail-row"><span>Grade</span><strong id="info-grade">—</strong></div>
+                            <div class="detail-row"><span>Statut</span><strong id="info-status">—</strong></div>
+                            <div class="detail-row"><span>Unité</span><strong id="info-unit">—</strong></div>
+                        </div>
+                    </div>
+                    <button class="btn btn-danger mt-2" id="duty-toggle-btn">Prise / Fin de service</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/app.js"></script>
+</body>
+</html>
