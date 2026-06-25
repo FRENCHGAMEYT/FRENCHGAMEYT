@@ -53,6 +53,45 @@ RegisterNetEvent('lspd:logVehicle', function(model, plate)
     print('[LSPD] ' .. GetPlayerName(src) .. ' a spawné : ' .. model .. ' (' .. plate .. ')')
 end)
 
+-- ── Actions police ───────────────────────────────
+RegisterNetEvent('lspd:searchPlayer', function(targetSrc)
+    local src = source
+    if not IsPolice(src) then return end
+    TriggerClientEvent('ox_lib:notify', targetSrc, {
+        title = 'LSPD', description = GetPlayerName(src) .. ' vous fouille.', type = 'inform', duration = 5000,
+    })
+    print('[LSPD] ' .. GetPlayerName(src) .. ' a fouillé ' .. GetPlayerName(targetSrc))
+end)
+
+RegisterNetEvent('lspd:handcuff', function(targetSrc, state)
+    local src = source
+    if not IsPolice(src) then return end
+    TriggerClientEvent('lspd:applyHandcuff', targetSrc, state)
+    print('[LSPD] ' .. GetPlayerName(src) .. (state and ' a menotté ' or ' a libéré ') .. GetPlayerName(targetSrc))
+end)
+
+RegisterNetEvent('lspd:getIdentity', function(targetSrc)
+    local src = source
+    if not IsPolice(src) then return end
+    local identifier = GetPlayerIdentifier(targetSrc, 0) or 'inconnu'
+    TriggerClientEvent('lspd:receiveIdentity', src, {
+        name = GetPlayerName(targetSrc),
+        id   = identifier,
+        date = os.date('%d/%m/%Y %H:%M'),
+    })
+end)
+
+RegisterNetEvent('lspd:impound', function(plate)
+    local src = source
+    if not IsPolice(src) then return end
+    print('[LSPD] ' .. GetPlayerName(src) .. ' a mis en fourrière : ' .. plate)
+end)
+
+RegisterNetEvent('lspd:radarLog', function()
+    local src = source
+    print('[LSPD] ' .. GetPlayerName(src) .. ' a posé un radar.')
+end)
+
 function IsPolice(src)
     if Config.Framework == 'esx' then
         local xPlayer = ESX.GetPlayerFromId(src)

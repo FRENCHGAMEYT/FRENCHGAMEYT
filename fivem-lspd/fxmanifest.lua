@@ -4,7 +4,7 @@ game 'gta5'
 name        'fivem-lspd'
 description 'Script LSPD complet — tenues, véhicules, unités spéciales, menu interactif'
 author      'FrenchGameYT'
-version     '1.0.0'
+version     '1.1.0'
 
 shared_scripts {
     '@ox_lib/init.lua',
@@ -18,6 +18,7 @@ client_scripts {
     'client/vehicle.lua',
     'client/blips.lua',
     'client/nui.lua',
+    'client/actions.lua',
 }
 
 server_scripts {

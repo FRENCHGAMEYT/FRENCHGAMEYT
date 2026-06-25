@@ -6,67 +6,55 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div id="overlay" class="hidden">
-    <div id="panel">
-
-        <!-- Header -->
-        <div id="header">
-            <div id="header-left">
-                <div id="shield">⚖</div>
-                <div id="header-text">
-                    <div id="dept-name">LOS SANTOS POLICE DEPT.</div>
-                    <div id="dept-sub">SYSTÈME DE GESTION OPÉRATIONNELLE</div>
-                </div>
-            </div>
-            <div id="header-right">
-                <div id="duty-pill" class="pill-off">● HORS SERVICE</div>
-                <button id="close-btn">✕</button>
-            </div>
+<div id="panel" class="hidden">
+    <div id="panel-header">
+        <span id="panel-badge">⚖</span>
+        <div>
+            <div id="panel-title">L.S.P.D.</div>
+            <div id="panel-sub" class="pill-on">● EN SERVICE</div>
         </div>
+        <button id="close-btn" title="Fermer [Échap]">✕</button>
+    </div>
 
-        <!-- Agent bar -->
-        <div id="agent-bar">
-            <div class="agent-cell">
-                <div class="agent-label">MATRICULE</div>
-                <div class="agent-value" id="ab-matricule">—</div>
-            </div>
-            <div class="agent-sep"></div>
-            <div class="agent-cell">
-                <div class="agent-label">GRADE</div>
-                <div class="agent-value accent" id="ab-grade">—</div>
-            </div>
-            <div class="agent-sep"></div>
-            <div class="agent-cell">
-                <div class="agent-label">UNITÉ</div>
-                <div class="agent-value" id="ab-unit">Aucune</div>
-            </div>
-        </div>
+    <div id="agent-row">
+        <span id="agent-grade">—</span>
+        <span class="sep">|</span>
+        <span id="agent-mat">—</span>
+    </div>
 
-        <!-- Tabs -->
-        <div id="tabs">
-            <button class="tab active" data-tab="units">🛡 Unités</button>
-            <button class="tab" data-tab="outfits">👔 Tenues</button>
-            <button class="tab" data-tab="armory">🔫 Armurerie</button>
-        </div>
-
-        <!-- Content -->
-        <div id="content">
-            <div class="pane active" id="pane-units">
-                <div class="grid" id="units-grid"></div>
-            </div>
-            <div class="pane" id="pane-outfits">
-                <div class="grid" id="outfits-grid"></div>
-            </div>
-            <div class="pane" id="pane-armory">
-                <div id="armory-list"></div>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <div id="footer">
-            <button id="duty-btn" class="duty-btn-off">⏻ &nbsp;Prise / Fin de service</button>
-        </div>
-
+    <div id="actions">
+        <button class="action-btn" data-action="search">
+            <span class="action-icon">🔍</span>
+            <span class="action-label">Fouiller</span>
+        </button>
+        <button class="action-btn" data-action="handcuff">
+            <span class="action-icon">⛓</span>
+            <span class="action-label">Menottes</span>
+        </button>
+        <button class="action-btn" data-action="unhandcuff">
+            <span class="action-icon">🔓</span>
+            <span class="action-label">Libérer</span>
+        </button>
+        <button class="action-btn" data-action="identity">
+            <span class="action-icon">🪪</span>
+            <span class="action-label">Contrôle ID</span>
+        </button>
+        <button class="action-btn" data-action="radar">
+            <span class="action-icon">📡</span>
+            <span class="action-label">Radar</span>
+        </button>
+        <button class="action-btn" data-action="lockpick">
+            <span class="action-icon">🗝</span>
+            <span class="action-label">Crocheter</span>
+        </button>
+        <button class="action-btn" data-action="impound">
+            <span class="action-icon">🚗</span>
+            <span class="action-label">Fourrière</span>
+        </button>
+        <button class="action-btn" data-action="spike">
+            <span class="action-icon">📌</span>
+            <span class="action-label">Hérissons</span>
+        </button>
     </div>
 </div>
 <script src="js/app.js"></script>
