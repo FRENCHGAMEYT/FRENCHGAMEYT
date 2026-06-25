@@ -1,0 +1,15 @@
+{
+    "not_police":        "Vous n'êtes pas policier.",
+    "duty_on":           "Vous êtes maintenant en service.",
+    "duty_off":          "Vous avez terminé votre service.",
+    "outfit_applied":    "Tenue appliquée.",
+    "outfit_removed":    "Tenue civile.",
+    "vehicle_spawned":   "Véhicule spawné.",
+    "vehicle_deleted":   "Véhicule supprimé.",
+    "weapon_given":      "Arme obtenue.",
+    "weapons_removed":   "Armes rendues.",
+    "unit_selected":     "Unité sélectionnée : ",
+    "access_denied":     "Accès refusé.",
+    "model_not_found":   "Modèle introuvable.",
+    "grade_required":    "Grade requis : "
+}
