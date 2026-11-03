@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio</title>
+<!--
+  ============================================================
+  PORTFOLIO — GABARIT 16:9 (1920 × 1080 px) PRÊT POUR CANVA
+  ============================================================
+  COMMENT L'UTILISER
+  1. Remplace tout ce qui est entre [CROCHETS] par ton contenu réel.
+  2. Exporte en PDF (Chrome > Imprimer > "Enregistrer en PDF",
+     marges "Aucune", "Graphiques d'arrière-plan" coché)
+     ou utilise directement le fichier portfolio.pdf fourni.
+  3. Dans Canva : "Créer un design" > "Importer" > choisis le PDF.
+     Chaque <section class="slide"> devient UNE page Canva,
+     chaque bloc de texte devient une zone de texte modifiable.
+
+  ⚠ Canva n'importe PAS le HTML. Ce fichier sert à générer le PDF.
+
+  RÈGLES RESPECTÉES POUR UN IMPORT PROPRE
+  - Aucun texte posé sur une image ou un dégradé (pas de superposition).
+  - Couleurs pleines uniquement (les dégradés/ombres se rasterisent mal).
+  - Polices disponibles nativement dans Canva : Montserrat + Inter.
+  - Les cadres pointillés = emplacements d'images. Dans Canva,
+    supprime le cadre et glisse un "Cadre" (Éléments > Cadres) à la place.
+  ============================================================
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ---------- 1. PALETTE : change ces 5 valeurs pour tout le document ---------- */
+  :root {
+    --bg:      #F5F3EE;  /* fond clair des pages            */
+    --ink:     #15171C;  /* texte principal                 */
+    --muted:   #5E626B;  /* texte secondaire                */
+    --accent:  #FF5A1F;  /* couleur de marque (titres, puces) */
+    --dark:    #15171C;  /* fond des pages sombres          */
+    --line:    #D9D5CC;  /* filets et cadres                */
+    --card:    #FFFFFF;  /* fond des cartes                 */
+  }
+
+  /* ---------- 2. FORMAT DE PAGE ---------- */
+  @page { size: 1920px 1080px; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #8A8780; }
+  body {
+    font-family: "Inter", Arial, sans-serif;
+    color: var(--ink);
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .slide {
+    width: 1920px; height: 1080px;
+    padding: 96px 140px;
+    background: var(--bg);
+    position: relative;
+    overflow: hidden;
+    margin: 40px auto;
+    display: flex; flex-direction: column;
+    page-break-after: always; break-after: page;
+  }
+  .slide.dark { background: var(--dark); color: #F5F3EE; }
+  @media print {
+    html, body { background: none; }
+    .slide { margin: 0; }
+  }
+  /* Aperçu écran : réduit les pages pour qu'elles tiennent dans la fenêtre */
+  @media screen and (max-width: 2000px) {
+    .slide { zoom: 0.5; }
+  }
+
+  /* ---------- 3. TYPOGRAPHIE ---------- */
+  .kicker {
+    font-family: "Montserrat", sans-serif; font-weight: 700;
+    font-size: 22px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--accent);
+  }
+  h1 { font-family: "Montserrat", sans-serif; font-weight: 800; font-size: 132px; line-height: 1.0; letter-spacing: -3px; }
+  h2 { font-family: "Montserrat", sans-serif; font-weight: 800; font-size: 76px; line-height: 1.05; letter-spacing: -1.5px; }
+  h3 { font-family: "Montserrat", sans-serif; font-weight: 700; font-size: 30px; line-height: 1.2; }
+  p, li { font-size: 25px; line-height: 1.55; }
+  .lead { font-size: 34px; line-height: 1.45; font-weight: 500; }
+  .muted { color: var(--muted); }
+  .dark .muted { color: #A9ADB5; }
+  .accent { color: var(--accent); }
+
+  /* ---------- 4. BLOCS RÉUTILISABLES ---------- */
+  .head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 64px; }
+  .head .num { font-family: "Montserrat"; font-weight: 800; font-size: 26px; color: var(--muted); }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; flex: 1; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; flex: 1; }
+  .card { background: var(--card); border: 2px solid var(--line); border-radius: 20px; padding: 36px 40px; }
+  .card h3 { margin-bottom: 20px; }
+  .rule { width: 96px; height: 8px; background: var(--accent); border-radius: 4px; margin: 36px 0; }
+  ul.dots { list-style: none; }
+  ul.dots li { padding-left: 36px; position: relative; margin-bottom: 12px; }
+  ul.dots li::before { content: ""; position: absolute; left: 0; top: 15px; width: 14px; height: 14px; border-radius: 50%; background: var(--accent); }
+  .tags { display: flex; flex-wrap: wrap; gap: 14px; }
+  .tag { font-size: 22px; font-weight: 600; padding: 12px 24px; border-radius: 999px; border: 2px solid var(--ink); }
+
+  /* Emplacement image : à remplacer par un Cadre Canva */
+  .ph {
+    border: 4px dashed var(--line); border-radius: 20px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    color: var(--muted); font-family: "Montserrat"; font-weight: 700; font-size: 26px;
+    text-align: center; gap: 8px;
+  }
+  .ph small { font-family: "Inter"; font-weight: 500; font-size: 20px; }
+  .dark .ph { border-color: #3A3D45; color: #A9ADB5; }
+
+  /* ---------- 5. PAGES SPÉCIFIQUES ---------- */
+  /* Couverture */
+  .cover { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 90px; height: 100%; }
+  .cover .left { display: flex; flex-direction: column; justify-content: space-between; }
+  .cover .role { font-family: "Montserrat"; font-weight: 700; font-size: 38px; margin-top: 36px; }
+  .cover .meta { display: flex; gap: 60px; }
+  .cover .meta p { font-size: 22px; }
+
+  /* Chiffres clés */
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+  .stat .n { font-family: "Montserrat"; font-weight: 800; font-size: 84px; color: var(--accent); line-height: 1; }
+  .stat .l { font-size: 22px; margin-top: 12px; }
+
+  /* Projet */
+  .project { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 80px; flex: 1; }
+  .project .blocks { display: flex; flex-direction: column; gap: 34px; }
+  .project .blocks h3 { font-size: 22px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .project .blocks p, .project .blocks li { font-size: 24px; }
+  .result { display: flex; gap: 28px; }
+  .result div { flex: 1; background: var(--card); border: 2px solid var(--line); border-radius: 16px; padding: 22px 26px; }
+  .result b { display: block; font-family: "Montserrat"; font-weight: 800; font-size: 44px; color: var(--ink); }
+  .result span { font-size: 19px; color: var(--muted); }
+  .project .visuals { display: grid; grid-template-rows: 1fr 260px; gap: 28px; }
+  .project .visuals .row { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+
+  /* Parcours */
+  .timeline { display: grid; grid-template-columns: 1fr 1fr; gap: 90px; flex: 1; }
+  .tl-item { display: grid; grid-template-columns: 170px 1fr; gap: 30px; padding: 30px 0; border-top: 2px solid var(--line); }
+  .tl-item .date { font-family: "Montserrat"; font-weight: 700; font-size: 22px; color: var(--accent); padding-top: 4px; }
+  .tl-item h3 { font-size: 27px; margin-bottom: 6px; }
+  .tl-item p { font-size: 21px; }
+
+  /* Contact */
+  .contact { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 100px; flex: 1; align-items: center; }
+  .links { display: flex; flex-direction: column; gap: 22px; }
+  .link { display: grid; grid-template-columns: 220px 1fr; padding: 26px 0; border-bottom: 2px solid #3A3D45; font-size: 28px; }
+  .link span:first-child { font-family: "Montserrat"; font-weight: 700; color: var(--accent); font-size: 22px; letter-spacing: 3px; text-transform: uppercase; padding-top: 5px; }
+  .cta { display: inline-block; background: var(--accent); color: #fff; font-family: "Montserrat"; font-weight: 800; font-size: 30px; padding: 28px 52px; border-radius: 999px; margin-top: 48px; }
+</style>
+</head>
+<body>
+
+<!-- =========================================================
+     PAGE 1 — COUVERTURE
+     ========================================================= -->
+<section class="slide">
+  <div class="cover">
+    <div class="left">
+      <div>
+        <p class="kicker">Portfolio [2026]</p>
+        <div class="rule"></div>
+        <!-- TON NOM : 2 lignes max, sinon réduis la taille dans Canva -->
+        <h1>[Prénom]<br>[Nom]</h1>
+        <p class="role">[Créateur de contenu &amp; Monteur vidéo]</p>
+        <!-- ACCROCHE : une promesse, pas une description. Ce que tu apportes, pour qui. -->
+        <p class="lead muted" style="margin-top:28px; max-width: 900px;">
+          Je transforme des idées brutes en vidéos qu'on regarde jusqu'au bout — et qui donnent envie de revenir.
+        </p>
+      </div>
+      <div class="meta">
+        <p><b>Basé à</b><br><span class="muted">[Ville, Pays]</span></p>
+        <p><b>Disponible</b><br><span class="muted">[Freelance / CDI / Alternance]</span></p>
+        <p><b>Contact</b><br><span class="muted">[ton@email.com]</span></p>
+      </div>
+    </div>
+    <!-- IMAGE : portrait ou visuel signature, format vertical -->
+    <div class="ph">PHOTO DE PROFIL<small>format vertical · 700 × 860 px minimum</small></div>
+  </div>
+</section>
+
+<!-- =========================================================
+     PAGE 2 — À PROPOS
+     ========================================================= -->
+<section class="slide">
+  <div class="head">
+    <div><p class="kicker">À propos</p><h2 style="margin-top:18px;">Qui je suis, comment je travaille.</h2></div>
+    <span class="num">02</span>
+  </div>
+  <div class="grid-2">
+    <div>
+      <!-- PRÉSENTATION : 3 à 4 phrases. Parcours en une ligne, spécialité, ce qui te distingue. -->
+      <p class="lead">
+        [Depuis X ans], je conçois et monte des contenus vidéo pour [créateurs, marques, médias].
+        Mon terrain de jeu : [le gaming, le format court, le storytelling].
+      </p>
+      <p class="muted" style="margin-top:24px;">
+        Ma conviction : un bon contenu se joue dans les trois premières secondes, et se gagne
+        sur la régularité. Je pense chaque projet en fonction de l'audience visée, du rythme
+        de la plateforme et de l'objectif mesurable derrière — vues, abonnés, conversions.
+      </p>
+      <!-- CHIFFRES CLÉS : remplace par des chiffres VRAIS et vérifiables. -->
+      <div class="stats" style="margin-top:48px;">
+        <div class="stat"><div class="n">[X]+</div><div class="l muted">projets livrés</div></div>
+        <div class="stat"><div class="n">[X] M</div><div class="l muted">vues cumulées</div></div>
+        <div class="stat"><div class="n">[X]</div><div class="l muted">clients accompagnés</div></div>
+      </div>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:24px;">
+      <!-- FORCES CLÉS : 3 maximum. Chaque force = un bénéfice concret pour le client. -->
+      <div class="card">
+        <h3><span class="accent">01 —</span> Le sens du rythme</h3>
+        <p class="muted">Des montages calibrés pour la rétention : coupes nettes, hooks, relances régulières.</p>
+      </div>
+      <div class="card">
+        <h3><span class="accent">02 —</span> La fiabilité</h3>
+        <p class="muted">Délais tenus, retours intégrés vite, communication claire du brief à la livraison.</p>
+      </div>
+      <div class="card">
+        <h3><span class="accent">03 —</span> La vision d'ensemble</h3>
+        <p class="muted">Je pense miniature, titre et format avant de toucher à la timeline.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     PAGE 3 — COMPÉTENCES & OUTILS
+     ========================================================= -->
+<section class="slide">
+  <div class="head">
+    <div><p class="kicker">Compétences &amp; outils</p><h2 style="margin-top:18px;">Ce que je sais faire.</h2></div>
+    <span class="num">03</span>
+  </div>
+  <div class="grid-3">
+    <div class="card">
+      <h3>Hard skills</h3>
+      <ul class="dots">
+        <li>[Montage vidéo long &amp; court format]</li>
+        <li>[Motion design &amp; habillage]</li>
+        <li>[Étalonnage &amp; mixage audio]</li>
+        <li>[Création de miniatures]</li>
+        <li>[Stratégie éditoriale &amp; analytics]</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Soft skills</h3>
+      <ul class="dots">
+        <li>[Autonomie et organisation]</li>
+        <li>[Écoute du brief client]</li>
+        <li>[Créativité sous contrainte]</li>
+        <li>[Réactivité aux retours]</li>
+        <li>[Curiosité des tendances]</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Logiciels</h3>
+      <!-- Ne liste QUE ce que tu maîtrises vraiment. Un recruteur testera. -->
+      <div class="tags" style="margin-top:8px;">
+        <span class="tag">[Premiere Pro]</span>
+        <span class="tag">[After Effects]</span>
+        <span class="tag">[DaVinci Resolve]</span>
+        <span class="tag">[Photoshop]</span>
+        <span class="tag">[Canva]</span>
+        <span class="tag">[CapCut]</span>
+        <span class="tag">[OBS Studio]</span>
+        <span class="tag">[Notion]</span>
+      </div>
+      <h3 style="margin-top:44px;">Langues</h3>
+      <p class="muted">[Français — natif]<br>[Anglais — courant]</p>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     PAGES 4 à 7 — PROJETS (1 projet = 1 page)
+     Duplique ou supprime une <section> pour ajuster le nombre.
+     ========================================================= -->
+
+<!-- PROJET 1 -->
+<section class="slide">
+  <div class="head">
+    <div><p class="kicker">Projet 01 · [Client / Chaîne] · [Année]</p><h2 style="margin-top:18px;">[Titre du projet 1]</h2></div>
+    <span class="num">04</span>
+  </div>
+  <div class="project">
+    <div class="blocks">
+      <div><h3>Contexte</h3><p>[Quel était le problème ? Ex : une chaîne qui stagne malgré une publication régulière.]</p></div>
+      <div><h3>Mon rôle</h3>
+        <ul class="dots">
+          <li>[Action 1 — ex : refonte du format et du rythme de montage]</li>
+          <li>[Action 2 — ex : nouvelle charte miniatures]</li>
+          <li>[Action 3 — ex : déclinaison en formats courts]</li>
+        </ul>
+      </div>
+      <div><h3>Résultats</h3>
+        <!-- Chiffres réels uniquement, avec la période de mesure. -->
+        <div class="result">
+          <div><b>[+X %]</b><span>[rétention moyenne]</span></div>
+          <div><b>[X K]</b><span>[abonnés gagnés en X mois]</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="visuals">
+      <div class="ph">VISUEL PRINCIPAL<small>capture / miniature · 16:9</small></div>
+      <div class="row">
+        <div class="ph">VISUEL 2<small>avant / après</small></div>
+        <div class="ph">VISUEL 3<small>stats / détail</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJET 2 -->
+<section class="slide">
+  <div class="head">
+    <div><p class="kicker">Projet 02 · [Client / Chaîne] · [Année]</p><h2 style="margin-top:18px;">[Titre du projet 2]</h2></div>
+    <span class="num">05</span>
+  </div>
+  <div class="project">
+    <div class="blocks">
+      <div><h3>Contexte</h3><p>[Ex : une marque qui veut lancer un produit auprès d'une audience gaming.]</p></div>
+      <div><h3>Mon rôle</h3>
+        <ul class="dots">
+          <li>[Action 1]</li>
+          <li>[Action 2]</li>
+          <li>[Action 3]</li>
+        </ul>
+      </div>
+      <div><h3>Résultats</h3>
+        <div class="result">
+          <div><b>[X K]</b><span>[vues en X jours]</span></div>
+          <div><b>[X %]</b><span>[taux d'engagement]</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="visuals">
+      <div class="ph">VISUEL PRINCIPAL<small>capture / miniature · 16:9</small></div>
+      <div class="row">
+        <div class="ph">VISUEL 2</div>
+        <div class="ph">VISUEL 3</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJET 3 -->
+<section class="slide">
+  <div class="head">
+    <div><p class="kicker">Projet 03 · [Client / Chaîne] · [Année]</p><h2 style="margin-top:18px;">[Titre du projet 3]</h2></div>
+    <span class="num">06</span>
+  </div>
+  <div class="project">
+    <div class="blocks">
+      <div><h3>Contexte</h3><p>[Ex : besoin de contenus courts réguliers pour TikTok / Shorts / Reels.]</p></div>
+      <div><h3>Mon rôle</h3>
+        <ul class="dots">
+          <li>[Action 1]</li>
+          <li>[Action 2]</li>
+          <li>[Action 3]</li>
+        </ul>
+      </div>
+      <div><h3>Résultats</h3>
+        <div class="result">
+          <div><b>[X]</b><span>[vidéos livrées / mois]</span></div>
+          <div><b>[X M]</b><span>[vues cumulées]</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="visuals">
+      <div class="ph">VISUEL PRINCIPAL<small>capture / miniature · 16:9</small></div>
+      <div class="row">
+        <div class="ph">VISUEL 2</div>
+        <div class="ph">VISUEL 3</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJET 4 (optionnel : supprime cette section si tu n'as que 3 projets solides) -->
+<section class="slide">
+  <div class="head">
+    <div><p class="kicker">Projet 04 · [Projet personnel] · [Année]</p><h2 style="margin-top:18px;">[Titre du projet 4]</h2></div>
+    <span class="num">07</span>
+  </div>
+  <div class="project">
+    <div class="blocks">
+      <div><h3>Contexte</h3><p>[Ex : ta propre chaîne — preuve que tu sais faire grandir une audience de zéro.]</p></div>
+      <div><h3>Mon rôle</h3>
+        <ul class="dots">
+          <li>[Action 1]</li>
+          <li>[Action 2]</li>
+          <li>[Action 3]</li>
+        </ul>
+      </div>
+      <div><h3>Résultats</h3>
+        <div class="result">
+          <div><b>[X K]</b><span>[abonnés]</span></div>
+          <div><b>[X]</b><span>[vidéos publiées]</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="visuals">
+      <div class="ph">VISUEL PRINCIPAL<small>capture / miniature · 16:9</small></div>
+      <div class="row">
+        <div class="ph">VISUEL 2</div>
+        <div class="ph">VISUEL 3</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     PAGE 8 — PARCOURS & FORMATION
+     ========================================================= -->
+<section class="slide">
+  <div class="head">
+    <div><p class="kicker">Parcours</p><h2 style="margin-top:18px;">Le chemin jusqu'ici.</h2></div>
+    <span class="num">08</span>
+  </div>
+  <div class="timeline">
+    <div>
+      <h3 style="margin-bottom:24px;">Expériences</h3>
+      <!-- Du plus récent au plus ancien. 3 à 4 entrées maximum. -->
+      <div class="tl-item"><div class="date">[2025 — auj.]</div><div><h3>[Poste] · [Entreprise]</h3><p class="muted">[Une ligne : ta mission principale et un résultat.]</p></div></div>
+      <div class="tl-item"><div class="date">[2023 — 2025]</div><div><h3>[Poste] · [Entreprise]</h3><p class="muted">[Une ligne : ta mission principale et un résultat.]</p></div></div>
+      <div class="tl-item"><div class="date">[2021 — 2023]</div><div><h3>[Poste] · [Entreprise]</h3><p class="muted">[Une ligne : ta mission principale et un résultat.]</p></div></div>
+    </div>
+    <div>
+      <h3 style="margin-bottom:24px;">Formation</h3>
+      <div class="tl-item"><div class="date">[2024]</div><div><h3>[Diplôme / Certification]</h3><p class="muted">[École — Ville]</p></div></div>
+      <div class="tl-item"><div class="date">[2022]</div><div><h3>[Diplôme]</h3><p class="muted">[École — Ville]</p></div></div>
+      <div class="tl-item"><div class="date">[En continu]</div><div><h3>[Autoformation]</h3><p class="muted">[Ex : formations en ligne, veille, communautés.]</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     PAGE 9 — CONTACT / CALL TO ACTION
+     ========================================================= -->
+<section class="slide dark">
+  <div class="head">
+    <div><p class="kicker">Contact</p></div>
+    <span class="num">09</span>
+  </div>
+  <div class="contact">
+    <div>
+      <h2 style="font-size:96px;">On crée<br>quelque chose<br><span class="accent">ensemble ?</span></h2>
+      <p class="lead muted" style="margin-top:36px; max-width:820px;">
+        Un projet, une chaîne à lancer, un format à réinventer : écris-moi, je réponds sous 48 h.
+      </p>
+      <!-- Dans Canva : sélectionne ce bouton > icône lien > colle ton email ou Calendly -->
+      <span class="cta">[ton@email.com]</span>
+    </div>
+    <!-- LIENS : dans Canva, sélectionne chaque texte et ajoute le lien (icône chaîne). -->
+    <div class="links">
+      <div class="link"><span>Email</span><span>[ton@email.com]</span></div>
+      <div class="link"><span>LinkedIn</span><span>[linkedin.com/in/ton-profil]</span></div>
+      <div class="link"><span>GitHub</span><span>[github.com/ton-pseudo]</span></div>
+      <div class="link"><span>Site web</span><span>[ton-site.com]</span></div>
+      <div class="link"><span>YouTube</span><span>[youtube.com/@ta-chaine]</span></div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
