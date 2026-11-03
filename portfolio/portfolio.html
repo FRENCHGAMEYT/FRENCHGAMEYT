@@ -7,23 +7,24 @@
 <!--
   =====================================================================
   PORTFOLIO CRÉATEUR UGC — 9 SECTIONS, 1440 × 1024 px CHACUNE
+  PALETTE 3 COULEURS : bleu marine · crème · bleu ciel
   =====================================================================
   IMPORT DANS CANVA
   - Importe portfolio.pdf (Créer un design > Importer). Chaque section = 1 page.
   - Pour en faire un site comme les exemples my.canva.site :
     "Redimensionner" > Site web, puis "Publier le site".
 
-  REMPLACER LES VISUELS (formes colorées avec une étiquette manuscrite)
+  REMPLACER LES VISUELS (formes avec une étiquette manuscrite)
   - SILHOUETTE = ta photo DÉTOURÉE (PNG sans fond).
     Canva : importe ta photo > "Modifier" > "Supprimer l'arrière-plan",
     puis pose-la à la place de la silhouette (par-dessus le texte = effet magazine).
-  - TÉLÉPHONES = tes vidéos. Supprime l'écran coloré et glisse ta vidéo dedans.
+  - TÉLÉPHONES = tes vidéos. Supprime l'écran et glisse ta vidéo dedans.
   - POLAROÏDS = tes photos (food, lifestyle, voyage...).
   - CERCLES "MATÉRIEL" = photos produit détourées de ton matériel.
-  - [Logo] = logos des marques avec qui tu as bossé.
+  - [Logo] = logos des marques (version monochrome blanche = plus propre).
 
   POLICES (toutes dans Canva) : Anton, DM Sans, Caveat.
-  COULEURS : variables de :root ci-dessous.
+  COULEURS : 3 variables dans :root. Change-les ici, tout suit.
   =====================================================================
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,68 +32,77 @@
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --cream:  #F4ECDF;   /* fond papier         */
-    --ink:    #1C1A1A;   /* noir                */
-    --red:    #E8432A;   /* couleur signature   */
-    --yellow: #F6C945;   /* post-it / accents   */
-    --blue:   #2B4BD8;   /* accent secondaire   */
-    --pink:   #F3B6C8;   /* accent doux         */
-    --shade:  #D9CBB4;   /* placeholders        */
+    --navy:  #14284B;   /* bleu marine : texte, fonds forts */
+    --cream: #F5EFE6;   /* crème : fond principal           */
+    --sky:   #BCD4EA;   /* bleu ciel : accents              */
   }
   @page { size: 1440px 1024px; margin: 0; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { background: #777; }
-  body { font-family: "DM Sans", Arial, sans-serif; color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { font-family: "DM Sans", Arial, sans-serif; color: var(--navy); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 
   .page { width: 1440px; height: 1024px; position: relative; overflow: hidden; margin: 30px auto; background: var(--cream); break-after: page; }
+  .page.navy { background: var(--navy); color: var(--cream); }
+  .page.sky  { background: var(--sky); }
   @media print { html, body { background: none; } .page { margin: 0; } }
   @media screen and (max-width: 1500px) { .page { zoom: .6; } }
 
   .anton { font-family: "Anton", Impact, sans-serif; text-transform: uppercase; line-height: .9; letter-spacing: 1px; }
   .hand  { font-family: "Caveat", cursive; font-weight: 700; }
   .abs   { position: absolute; }
+  .hl    { display: inline-block; line-height: 1.02; background: var(--sky); color: var(--navy); padding: .02em .1em 0; }   /* mot surligné (sur fond crème) */
+  .acc   { color: var(--sky); }                                             /* mot accent (sur fond marine) */
   p { font-size: 21px; line-height: 1.55; }
 
-  .sticker { display: inline-block; font-family: "Anton"; text-transform: uppercase; font-size: 22px; letter-spacing: 1px; padding: 12px 22px; border-radius: 999px; border: 3px solid var(--ink); background: var(--yellow); color: var(--ink); }
-  .postit { background: var(--yellow); padding: 26px 28px; width: 300px; box-shadow: 6px 8px 0 rgba(0,0,0,.18); color: var(--ink); }
+  .sticker { display: inline-block; font-family: "Anton"; text-transform: uppercase; font-size: 22px; letter-spacing: 1px; padding: 12px 22px; border-radius: 999px; border: 3px solid var(--navy); background: var(--sky); color: var(--navy); }
+  .sticker.c { background: var(--cream); }
+  .postit { background: var(--sky); padding: 26px 28px; width: 300px; box-shadow: 6px 8px 0 rgba(20,40,75,.25); color: var(--navy); }
   .postit .hand { font-size: 32px; line-height: 1; display: block; margin-bottom: 8px; }
   .postit p { font-size: 19px; line-height: 1.4; }
-  .tape { position: absolute; width: 110px; height: 34px; background: rgba(255,255,255,.65); top: -16px; left: 50%; transform: translateX(-50%) rotate(-4deg); }
-  .pill { display: inline-flex; align-items: center; gap: 12px; font-weight: 700; font-size: 20px; padding: 14px 30px; border-radius: 999px; background: var(--ink); color: var(--cream); }
-  .pill.light { background: var(--cream); color: var(--ink); border: 3px solid var(--ink); }
+  .tape { position: absolute; width: 110px; height: 34px; background: rgba(245,239,230,.7); top: -16px; left: 50%; transform: translateX(-50%) rotate(-4deg); }
+  .pill { display: inline-flex; align-items: center; gap: 12px; font-weight: 700; font-size: 20px; padding: 14px 30px; border-radius: 999px; background: var(--navy); color: var(--cream); }
+  .pill.light { background: var(--cream); color: var(--navy); border: 3px solid var(--navy); }
   .arrow { position: absolute; }
-  .arrow path { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linecap: round; }
+  .arrow path { fill: none; stroke: currentColor; stroke-width: 3; stroke-linecap: round; }
 
   .torn-bottom { clip-path: polygon(0 0,100% 0,100% 92%,97% 96%,93% 91%,89% 97%,84% 92%,80% 98%,75% 93%,70% 97%,66% 91%,61% 96%,56% 92%,51% 98%,46% 93%,41% 97%,36% 91%,31% 96%,26% 92%,21% 98%,16% 93%,11% 97%,6% 91%,3% 96%,0 93%); }
 
   .cutout { position: absolute; }
   .cutout svg { width: 100%; height: 100%; display: block; }
-  .cutout .lbl { position: absolute; bottom: 38%; left: 0; right: 0; text-align: center; font-family: "Caveat"; font-weight: 700; font-size: 30px; color: var(--cream); line-height: 1.05; }
+  .cutout .lbl { position: absolute; bottom: 38%; left: 0; right: 0; text-align: center; font-family: "Caveat"; font-weight: 700; font-size: 30px; line-height: 1.05; }
 
-  .phone { width: 196px; height: 392px; border: 9px solid var(--ink); border-radius: 34px; position: relative; overflow: hidden; background: var(--ink); }
+  .phone { width: 196px; height: 392px; border: 9px solid var(--navy); border-radius: 34px; position: relative; overflow: hidden; background: var(--navy); }
   .phone .screen { position: absolute; inset: 0; border-radius: 24px; display: flex; align-items: center; justify-content: center; }
-  .phone .notch { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 70px; height: 18px; border-radius: 10px; background: var(--ink); z-index: 2; }
-  .phone .play { width: 64px; height: 64px; border-radius: 50%; background: rgba(28,26,26,.75); display: flex; align-items: center; justify-content: center; }
-  .phone .play::after { content: ""; border-left: 22px solid #fff; border-top: 13px solid transparent; border-bottom: 13px solid transparent; margin-left: 6px; }
-  .phone .tag { position: absolute; bottom: 18px; left: 14px; right: 14px; font-size: 13px; font-weight: 700; color: #fff; background: rgba(28,26,26,.55); padding: 6px 10px; border-radius: 8px; text-align: center; }
+  .phone .notch { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 70px; height: 18px; border-radius: 10px; background: var(--navy); z-index: 2; }
+  .phone .play { width: 64px; height: 64px; border-radius: 50%; background: var(--cream); display: flex; align-items: center; justify-content: center; }
+  .phone .play::after { content: ""; border-left: 22px solid var(--navy); border-top: 13px solid transparent; border-bottom: 13px solid transparent; margin-left: 6px; }
+  .phone .tag { position: absolute; bottom: 18px; left: 14px; right: 14px; font-size: 13px; font-weight: 700; color: var(--navy); background: var(--cream); padding: 6px 10px; border-radius: 8px; text-align: center; }
   .vid { display: flex; flex-direction: column; align-items: center; gap: 14px; }
-  .vid .cat { font-family: "Caveat"; font-weight: 700; font-size: 26px; background: var(--ink); color: var(--cream); padding: 2px 16px; border-radius: 999px; }
+  .vid .cat { font-family: "Caveat"; font-weight: 700; font-size: 26px; background: var(--navy); color: var(--cream); padding: 2px 16px; border-radius: 999px; }
   .vid .brand { font-family: "Anton"; text-transform: uppercase; font-size: 26px; letter-spacing: 1px; }
   .vid .what { font-size: 16px; margin-top: -10px; opacity: .75; }
 
-  .polaroid { position: absolute; background: #fff; padding: 14px 14px 52px; box-shadow: 6px 10px 0 rgba(0,0,0,.15); }
-  .polaroid .ph { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-family: "Caveat"; font-weight: 700; font-size: 26px; color: rgba(28,26,26,.55); }
+  .polaroid { position: absolute; background: var(--cream); padding: 14px 14px 52px; box-shadow: 6px 10px 0 rgba(20,40,75,.25); }
+  .polaroid .ph { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-family: "Caveat"; font-weight: 700; font-size: 26px; }
+  .polaroid .ph.n { background: var(--navy); color: var(--sky); }
+  .polaroid .ph.s { background: var(--sky); color: var(--navy); }
   .polaroid .cap { position: absolute; bottom: 10px; left: 0; right: 0; text-align: center; font-family: "Caveat"; font-weight: 700; font-size: 28px; }
 
-  .ticker { position: absolute; left: -40px; right: -40px; height: 74px; display: flex; align-items: center; gap: 34px; white-space: nowrap; font-family: "Anton"; font-size: 34px; text-transform: uppercase; letter-spacing: 1px; }
+  .ticker { position: absolute; left: -40px; right: -40px; height: 74px; display: flex; align-items: center; gap: 34px; white-space: nowrap; font-family: "Anton"; font-size: 34px; text-transform: uppercase; letter-spacing: 1px; background: var(--navy); color: var(--cream); }
+  .ticker .s { color: var(--sky); }
 
-  /* Badges étoilés (page "Pourquoi moi") */
+  .stat { width: 280px; height: 280px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .stat .anton { font-size: 92px; }
+  .stat .hand { font-size: 32px; }
+
   .burst { width: 230px; height: 230px; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; }
   .burst svg { position: absolute; inset: 0; width: 100%; height: 100%; }
   .burst span { position: relative; font-family: "Anton"; text-transform: uppercase; font-size: 24px; line-height: 1.05; padding: 0 44px; }
   .why { display: flex; flex-direction: column; align-items: center; gap: 22px; width: 290px; }
-  .why .card { background: #fff; border: 3px solid var(--ink); border-radius: 18px; padding: 22px 24px; box-shadow: 6px 6px 0 var(--ink); }
+  .why .card { background: var(--cream); border: 3px solid var(--navy); border-radius: 18px; padding: 22px 24px; box-shadow: 6px 6px 0 var(--navy); }
   .why .card p { font-size: 18px; line-height: 1.45; }
+
+  .gear { width: 240px; height: 240px; border-radius: 50%; background: rgba(188,212,234,.16); border: 3px dashed var(--sky); display: flex; align-items: center; justify-content: center; font-size: 28px; color: var(--sky); }
 </style>
 </head>
 <body>
@@ -101,49 +111,50 @@
      01 — HERO : ton nom en géant, ta photo détourée par-dessus
      ================================================================ -->
 <section class="page">
-  <div class="abs" style="top:0;left:0;right:0;height:16px;background:var(--red)"></div>
+  <div class="abs" style="top:0;left:0;right:0;height:16px;background:var(--navy)"></div>
   <div class="abs hand" style="top:60px;left:80px;font-size:38px;transform:rotate(-4deg)">portfolio • [2026]</div>
   <div class="abs sticker" style="top:56px;right:80px;transform:rotate(5deg)">✦ Dispo pour collab</div>
 
+  <!-- Bande bleu ciel derrière le nom -->
+  <div class="abs" style="left:0;right:0;top:455px;height:320px;background:var(--sky)"></div>
   <!-- NOM : remplace [Prénom] et [Nom] -->
   <div class="abs anton" style="top:150px;left:0;right:0;text-align:center;font-size:330px">[Prénom]</div>
-  <div class="abs anton" style="top:470px;left:0;right:0;text-align:center;font-size:330px;color:var(--red)">[Nom]</div>
+  <div class="abs anton" style="top:470px;left:0;right:0;text-align:center;font-size:330px">[Nom]</div>
 
   <!-- PHOTO DÉTOURÉE : posée PAR-DESSUS le nom -->
-  <div class="cutout" style="left:540px;top:250px;width:360px;height:774px">
-    <svg viewBox="0 0 300 640" preserveAspectRatio="none"><circle cx="150" cy="110" r="78" fill="#2A2626"/><path d="M10 640 C10 330 70 215 150 215 C230 215 290 330 290 640Z" fill="#2A2626"/></svg>
+  <div class="cutout" style="left:540px;top:250px;width:360px;height:774px;color:var(--cream)">
+    <svg viewBox="0 0 300 640" preserveAspectRatio="none"><circle cx="150" cy="110" r="78" fill="#14284B"/><path d="M10 640 C10 330 70 215 150 215 C230 215 290 330 290 640Z" fill="#14284B"/></svg>
     <div class="lbl">ta photo<br>détourée ici</div>
   </div>
 
-  <div class="abs" style="left:80px;bottom:90px;width:420px">
+  <div class="abs" style="left:80px;bottom:60px;width:420px">
     <div class="anton" style="font-size:44px;line-height:1">Créateur·rice<br>de contenu UGC</div>
     <p style="margin-top:14px;font-size:19px">Des vidéos qui ressemblent à tes clients — et qui donnent envie d'acheter.</p>
   </div>
   <!-- LIENS : sélectionne la pilule dans Canva > icône lien > colle l'URL -->
-  <div class="abs" style="right:80px;bottom:90px;display:flex;flex-direction:column;gap:14px;align-items:flex-end">
+  <div class="abs" style="right:80px;bottom:60px;display:flex;gap:14px">
     <span class="pill">Instagram ↗</span>
     <span class="pill">TikTok ↗</span>
     <span class="pill light">Mail ↗</span>
   </div>
-  <div class="abs hand" style="right:150px;bottom:340px;font-size:30px;transform:rotate(-6deg)">clique, ça mord pas</div>
-  <svg class="arrow" style="right:270px;bottom:250px" width="90" height="90" viewBox="0 0 90 90"><path d="M70 6 C40 20 20 45 30 80"/><path d="M18 66 L30 82 L42 66"/></svg>
+  <div class="abs hand" style="right:120px;bottom:140px;font-size:30px;transform:rotate(-4deg)">clique, ça mord pas ↓</div>
 </section>
 
 <!-- ================================================================
-     02 — QUI SUIS-JE : bloc rouge, photo + annotations
+     02 — QUI SUIS-JE : fond marine, photo + annotations
      ================================================================ -->
-<section class="page" style="background:var(--red);color:var(--cream)">
-  <div class="cutout" style="left:90px;bottom:0;width:440px;height:800px">
-    <svg viewBox="0 0 300 640" preserveAspectRatio="none"><circle cx="150" cy="120" r="82" fill="#B92F1B"/><path d="M0 640 C0 330 70 225 150 225 C230 225 300 330 300 640Z" fill="#B92F1B"/></svg>
+<section class="page navy">
+  <div class="cutout" style="left:90px;bottom:0;width:440px;height:800px;color:var(--navy)">
+    <svg viewBox="0 0 300 640" preserveAspectRatio="none"><circle cx="150" cy="120" r="82" fill="#BCD4EA"/><path d="M0 640 C0 330 70 225 150 225 C230 225 300 330 300 640Z" fill="#BCD4EA"/></svg>
     <div class="lbl">photo 2<br>(détourée)</div>
   </div>
   <!-- Annotation façon carnet : un détail sur toi -->
-  <div class="abs hand" style="left:60px;top:90px;font-size:32px;transform:rotate(-8deg)">[ton détail signature]</div>
-  <svg class="arrow" style="left:170px;top:130px" width="140" height="110" viewBox="0 0 140 110"><path d="M10 10 C30 60 70 90 120 95" style="stroke:var(--cream)"/><path d="M104 84 L122 96 L104 104" style="stroke:var(--cream)"/></svg>
+  <div class="abs hand acc" style="left:60px;top:90px;font-size:32px;transform:rotate(-8deg)">[ton détail signature]</div>
+  <svg class="arrow" style="left:170px;top:130px;color:var(--sky)" width="140" height="110" viewBox="0 0 140 110"><path d="M10 10 C30 60 70 90 120 95"/><path d="M104 84 L122 96 L104 104"/></svg>
 
   <div class="abs" style="left:640px;top:100px;width:700px">
-    <div class="anton" style="font-size:132px;white-space:nowrap">Qui suis-je ?</div>
-    <div class="anton" style="font-size:34px;margin-top:22px;color:var(--yellow)">[Prénom] · [âge] ans · [Ville]</div>
+    <div class="anton" style="font-size:132px;white-space:nowrap">Qui suis-<span class="acc">je ?</span></div>
+    <div class="anton acc" style="font-size:34px;margin-top:22px">[Prénom] · [âge] ans · [Ville]</div>
     <p style="margin-top:28px">
       Je crée des vidéos courtes qui parlent comme ton audience : <b>naturelles, rythmées et pensées pour convertir</b>.
       Je m'adapte à l'identité de chaque marque sans perdre ma touche perso.
@@ -153,9 +164,9 @@
       tu reçois une vidéo prête à poster.
     </p>
     <div style="display:flex;gap:16px;margin-top:34px">
-      <span class="sticker" style="background:var(--cream)">[Face cam]</span>
+      <span class="sticker c">[Face cam]</span>
       <span class="sticker">[Voix off]</span>
-      <span class="sticker" style="background:var(--pink)">[Montage]</span>
+      <span class="sticker c">[Montage]</span>
     </div>
   </div>
 
@@ -170,43 +181,43 @@
      03 — MES VIDÉOS : téléphones classés par catégorie
      ================================================================ -->
 <section class="page">
-  <div class="ticker" style="top:46px;background:var(--ink);color:var(--cream);transform:rotate(-2deg)">
-    <span>UGC</span><span>✦</span><span>Face cam</span><span>✦</span><span>Voix off</span><span>✦</span><span>Unboxing</span><span>✦</span><span>Avis client</span><span>✦</span><span>Micro-trottoir</span><span>✦</span><span>Hook</span><span>✦</span><span>UGC</span>
+  <div class="ticker" style="top:46px;transform:rotate(-2deg)">
+    <span>UGC</span><span class="s">✦</span><span>Face cam</span><span class="s">✦</span><span>Voix off</span><span class="s">✦</span><span>Unboxing</span><span class="s">✦</span><span>Avis client</span><span class="s">✦</span><span>Micro-trottoir</span><span class="s">✦</span><span>Hook</span><span class="s">✦</span><span>UGC</span>
   </div>
-  <div class="abs anton" style="left:80px;top:170px;font-size:130px">Mes <span style="color:var(--red)">vidéos</span></div>
+  <div class="abs anton" style="left:80px;top:170px;font-size:130px">Mes <span class="hl">vidéos</span></div>
   <div class="abs hand" style="left:720px;top:215px;font-size:34px;transform:rotate(-5deg)">appuie sur play ↓</div>
 
   <!-- 5 VIDÉOS : catégorie au-dessus, marque + produit dessous -->
   <div class="abs" style="left:80px;right:80px;top:330px;display:flex;justify-content:space-between;align-items:flex-start">
-    <div class="vid" style="transform:rotate(-3deg)"><span class="cat">[food]</span><div class="phone"><div class="notch"></div><div class="screen" style="background:var(--pink)"><div class="play"></div></div><div class="tag">[hook de la vidéo]</div></div><div class="brand">[Marque 1]</div><div class="what">[produit]</div></div>
-    <div class="vid" style="margin-top:50px"><span class="cat">[beauté]</span><div class="phone"><div class="notch"></div><div class="screen" style="background:var(--yellow)"><div class="play"></div></div><div class="tag">[hook de la vidéo]</div></div><div class="brand">[Marque 2]</div><div class="what">[produit]</div></div>
-    <div class="vid" style="transform:rotate(2deg)"><span class="cat">[tech]</span><div class="phone"><div class="notch"></div><div class="screen" style="background:var(--red)"><div class="play"></div></div><div class="tag">[hook de la vidéo]</div></div><div class="brand">[Marque 3]</div><div class="what">[produit]</div></div>
-    <div class="vid" style="margin-top:50px"><span class="cat">[sport]</span><div class="phone"><div class="notch"></div><div class="screen" style="background:var(--blue)"><div class="play"></div></div><div class="tag">[hook de la vidéo]</div></div><div class="brand">[Marque 4]</div><div class="what">[produit]</div></div>
-    <div class="vid" style="transform:rotate(-2deg)"><span class="cat">[lifestyle]</span><div class="phone"><div class="notch"></div><div class="screen" style="background:var(--shade)"><div class="play"></div></div><div class="tag">[hook de la vidéo]</div></div><div class="brand">[Marque 5]</div><div class="what">[produit]</div></div>
+    <div class="vid" style="transform:rotate(-3deg)"><span class="cat">[food]</span><div class="phone"><div class="notch"></div><div class="screen" style="background:var(--sky)"><div class="play"></div></div><div class="tag">[hook de la vidéo]</div></div><div class="brand">[Marque 1]</div><div class="what">[produit]</div></div>
+    <div class="vid" style="margin-top:50px"><span class="cat">[beauté]</span><div class="phone"><div class="notch"></div><div class="screen" style="background:var(--navy)"><div class="play"></div></div><div class="tag">[hook de la vidéo]</div></div><div class="brand">[Marque 2]</div><div class="what">[produit]</div></div>
+    <div class="vid" style="transform:rotate(2deg)"><span class="cat">[tech]</span><div class="phone"><div class="notch"></div><div class="screen" style="background:var(--sky)"><div class="play"></div></div><div class="tag">[hook de la vidéo]</div></div><div class="brand">[Marque 3]</div><div class="what">[produit]</div></div>
+    <div class="vid" style="margin-top:50px"><span class="cat">[sport]</span><div class="phone"><div class="notch"></div><div class="screen" style="background:var(--navy)"><div class="play"></div></div><div class="tag">[hook de la vidéo]</div></div><div class="brand">[Marque 4]</div><div class="what">[produit]</div></div>
+    <div class="vid" style="transform:rotate(-2deg)"><span class="cat">[lifestyle]</span><div class="phone"><div class="notch"></div><div class="screen" style="background:var(--sky)"><div class="play"></div></div><div class="tag">[hook de la vidéo]</div></div><div class="brand">[Marque 5]</div><div class="what">[produit]</div></div>
   </div>
 </section>
 
 <!-- ================================================================
      04 — EN CHIFFRES + MUR DE MARQUES
      ================================================================ -->
-<section class="page" style="background:var(--ink);color:var(--cream)">
-  <div class="abs anton" style="left:80px;top:90px;font-size:120px">En <span style="color:var(--yellow)">chiffres</span></div>
+<section class="page navy">
+  <div class="abs anton" style="left:80px;top:90px;font-size:120px">En <span class="acc">chiffres</span></div>
   <!-- CHIFFRES : uniquement des vrais. Supprime une bulle si tu n'as pas la donnée. -->
   <div class="abs" style="left:80px;right:80px;top:280px;display:flex;justify-content:space-between">
-    <div style="width:280px;height:280px;border-radius:50%;background:var(--red);display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(-6deg)"><div class="anton" style="font-size:92px">[X]K</div><div class="hand" style="font-size:32px">abonnés</div></div>
-    <div style="width:280px;height:280px;border-radius:50%;background:var(--yellow);color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;margin-top:50px"><div class="anton" style="font-size:92px">[X]M</div><div class="hand" style="font-size:32px">vues cumulées</div></div>
-    <div style="width:280px;height:280px;border-radius:50%;background:var(--pink);color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(5deg)"><div class="anton" style="font-size:92px">[X]+</div><div class="hand" style="font-size:32px">marques</div></div>
-    <div style="width:280px;height:280px;border-radius:50%;border:4px solid var(--cream);display:flex;flex-direction:column;align-items:center;justify-content:center;margin-top:50px"><div class="anton" style="font-size:92px">[X]%</div><div class="hand" style="font-size:32px">d'engagement</div></div>
+    <div class="stat" style="background:var(--sky);color:var(--navy);transform:rotate(-6deg)"><div class="anton">[X]K</div><div class="hand">abonnés</div></div>
+    <div class="stat" style="background:var(--cream);color:var(--navy);margin-top:50px"><div class="anton">[X]M</div><div class="hand">vues cumulées</div></div>
+    <div class="stat" style="border:4px solid var(--sky);transform:rotate(5deg)"><div class="anton acc">[X]+</div><div class="hand">marques</div></div>
+    <div class="stat" style="background:var(--sky);color:var(--navy);margin-top:50px"><div class="anton">[X]%</div><div class="hand">d'engagement</div></div>
   </div>
-  <!-- LOGOS : remplace chaque [Logo] par le logo de la marque (version claire) -->
+  <!-- LOGOS : remplace chaque [Logo] par le logo de la marque (version blanche) -->
   <div class="abs" style="left:80px;right:80px;bottom:70px">
-    <div class="hand" style="font-size:36px;color:var(--yellow);margin-bottom:18px">ils m'ont fait confiance ↓</div>
+    <div class="hand acc" style="font-size:36px;margin-bottom:18px">ils m'ont fait confiance ↓</div>
     <div style="display:flex;gap:20px">
-      <div class="anton" style="flex:1;height:96px;border:3px solid #4A4545;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;color:#8E8686">[Logo]</div>
-      <div class="anton" style="flex:1;height:96px;border:3px solid #4A4545;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;color:#8E8686">[Logo]</div>
-      <div class="anton" style="flex:1;height:96px;border:3px solid #4A4545;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;color:#8E8686">[Logo]</div>
-      <div class="anton" style="flex:1;height:96px;border:3px solid #4A4545;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;color:#8E8686">[Logo]</div>
-      <div class="anton" style="flex:1;height:96px;border:3px solid #4A4545;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;color:#8E8686">[Logo]</div>
+      <div class="anton" style="flex:1;height:96px;border:3px solid rgba(188,212,234,.35);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;color:rgba(188,212,234,.6)">[Logo]</div>
+      <div class="anton" style="flex:1;height:96px;border:3px solid rgba(188,212,234,.35);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;color:rgba(188,212,234,.6)">[Logo]</div>
+      <div class="anton" style="flex:1;height:96px;border:3px solid rgba(188,212,234,.35);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;color:rgba(188,212,234,.6)">[Logo]</div>
+      <div class="anton" style="flex:1;height:96px;border:3px solid rgba(188,212,234,.35);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;color:rgba(188,212,234,.6)">[Logo]</div>
+      <div class="anton" style="flex:1;height:96px;border:3px solid rgba(188,212,234,.35);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;color:rgba(188,212,234,.6)">[Logo]</div>
     </div>
   </div>
 </section>
@@ -214,22 +225,22 @@
 <!-- ================================================================
      05 — MON UNIVERS : moodboard de polaroïds
      ================================================================ -->
-<section class="page" style="background:var(--pink)">
+<section class="page sky">
   <div class="abs torn-bottom" style="left:0;right:0;top:0;height:270px;background:var(--cream)"></div>
-  <div class="abs anton" style="left:80px;top:70px;font-size:130px">Mon <span style="color:var(--red)">univers</span></div>
+  <div class="abs anton" style="left:80px;top:70px;font-size:130px">Mon <span class="hl">univers</span></div>
   <div class="abs" style="right:80px;top:100px;display:flex;gap:12px">
     <span class="sticker">[Food]</span>
-    <span class="sticker" style="background:var(--cream)">[Lifestyle]</span>
-    <span class="sticker" style="background:var(--red);color:var(--cream)">[Voyage]</span>
+    <span class="sticker c">[Lifestyle]</span>
+    <span class="sticker" style="background:var(--navy);color:var(--cream)">[Voyage]</span>
   </div>
   <!-- POLAROÏDS : tes plus belles photos, légende manuscrite dessous -->
-  <div class="polaroid" style="left:70px;top:330px;width:280px;height:360px;transform:rotate(-7deg)"><div class="ph" style="background:var(--yellow)">photo</div><div class="cap">[food]</div></div>
-  <div class="polaroid" style="left:330px;top:440px;width:300px;height:380px;transform:rotate(4deg)"><div class="ph" style="background:var(--shade)">photo</div><div class="cap">[lifestyle]</div></div>
-  <div class="polaroid" style="left:600px;top:310px;width:280px;height:350px;transform:rotate(-3deg)"><div class="ph" style="background:#BFD3F7">photo</div><div class="cap">[voyage]</div></div>
-  <div class="polaroid" style="left:860px;top:450px;width:290px;height:370px;transform:rotate(6deg)"><div class="ph" style="background:var(--red);color:rgba(255,255,255,.7)">photo</div><div class="cap">[outfit]</div></div>
-  <div class="polaroid" style="left:1110px;top:310px;width:270px;height:340px;transform:rotate(-5deg)"><div class="ph" style="background:var(--cream)">photo</div><div class="cap">[shooting]</div></div>
-  <div class="abs postit" style="left:1090px;top:730px;width:270px;transform:rotate(-3deg)">
-    <div class="tape"></div>
+  <div class="polaroid" style="left:70px;top:330px;width:280px;height:360px;transform:rotate(-7deg)"><div class="ph n">photo</div><div class="cap">[food]</div></div>
+  <div class="polaroid" style="left:330px;top:440px;width:300px;height:380px;transform:rotate(4deg)"><div class="ph s">photo</div><div class="cap">[lifestyle]</div></div>
+  <div class="polaroid" style="left:600px;top:310px;width:280px;height:350px;transform:rotate(-3deg)"><div class="ph n">photo</div><div class="cap">[voyage]</div></div>
+  <div class="polaroid" style="left:860px;top:450px;width:290px;height:370px;transform:rotate(6deg)"><div class="ph s">photo</div><div class="cap">[outfit]</div></div>
+  <div class="polaroid" style="left:1110px;top:310px;width:270px;height:340px;transform:rotate(-5deg)"><div class="ph n">photo</div><div class="cap">[shooting]</div></div>
+  <div class="abs postit" style="left:1090px;top:730px;width:270px;transform:rotate(-3deg);background:var(--cream)">
+    <div class="tape" style="background:rgba(188,212,234,.8)"></div>
     <span class="hand">[mon petit univers]</span>
     <p>[Ce qui t'inspire : musique, sport, cuisine… en une phrase.]</p>
   </div>
@@ -239,18 +250,18 @@
 <!-- ================================================================
      06 — POURQUOI MOI : positionnement + badges étoilés
      ================================================================ -->
-<section class="page" style="background:var(--yellow)">
+<section class="page sky">
   <div class="abs" style="left:80px;top:80px">
     <div class="anton" style="font-size:96px">Pas juste un créateur.</div>
     <!-- TA NICHE : ce que tu connais mieux que les autres (sport, cuisine, tech, études…) -->
-    <div class="anton" style="font-size:96px;color:var(--red);margin-top:8px">Un expert [de ta niche].</div>
+    <div class="anton" style="font-size:96px;margin-top:18px"><span style="display:inline-block;line-height:1.02;background:var(--navy);color:var(--cream);padding:.02em .12em 0">Un expert [de ta niche].</span></div>
     <p style="margin-top:22px;width:900px">[Ce qui te rend crédible : ta formation, ta passion, ton métier. Ex : "Étudiant en X, je parle de ce que je connais vraiment — et ça se sent."]</p>
   </div>
   <div class="abs" style="left:80px;right:80px;top:440px;display:flex;justify-content:space-between">
-    <div class="why"><div class="burst"><svg viewBox="0 0 200 200"><polygon class="star" fill="#F4ECDF" stroke="#1C1A1A" stroke-width="3"/></svg><span>Contenu de qualité</span></div><div class="card"><p>Des vidéos authentiques qui captent l'attention dès la première seconde.</p></div></div>
-    <div class="why" style="margin-top:40px"><div class="burst"><svg viewBox="0 0 200 200"><polygon class="star" fill="#E8432A" stroke="#1C1A1A" stroke-width="3"/></svg><span style="color:var(--cream)">[Ton expertise]</span></div><div class="card"><p>[Ce que ta niche t'apporte que les autres créateurs n'ont pas.]</p></div></div>
-    <div class="why"><div class="burst"><svg viewBox="0 0 200 200"><polygon class="star" fill="#F3B6C8" stroke="#1C1A1A" stroke-width="3"/></svg><span>Réactivité</span></div><div class="card"><p>Brief reçu, vidéo livrée en [48 h]. Communication directe, deadlines tenues.</p></div></div>
-    <div class="why" style="margin-top:40px"><div class="burst"><svg viewBox="0 0 200 200"><polygon class="star" fill="#2B4BD8" stroke="#1C1A1A" stroke-width="3"/></svg><span style="color:var(--cream)">Droits pub</span></div><div class="card"><p>Besoin de sponsoriser ? Je cède les droits pour tes ads [sur X mois].</p></div></div>
+    <div class="why"><div class="burst"><svg viewBox="0 0 200 200"><polygon class="star" fill="#F5EFE6" stroke="#14284B" stroke-width="3"/></svg><span>Contenu de qualité</span></div><div class="card"><p>Des vidéos authentiques qui captent l'attention dès la première seconde.</p></div></div>
+    <div class="why" style="margin-top:40px"><div class="burst"><svg viewBox="0 0 200 200"><polygon class="star" fill="#14284B" stroke="#14284B" stroke-width="3"/></svg><span style="color:var(--cream)">[Ton expertise]</span></div><div class="card"><p>[Ce que ta niche t'apporte que les autres créateurs n'ont pas.]</p></div></div>
+    <div class="why"><div class="burst"><svg viewBox="0 0 200 200"><polygon class="star" fill="#F5EFE6" stroke="#14284B" stroke-width="3"/></svg><span>Réactivité</span></div><div class="card"><p>Brief reçu, vidéo livrée en [48 h]. Communication directe, deadlines tenues.</p></div></div>
+    <div class="why" style="margin-top:40px"><div class="burst"><svg viewBox="0 0 200 200"><polygon class="star" fill="#14284B" stroke="#14284B" stroke-width="3"/></svg><span style="color:var(--cream)">Droits pub</span></div><div class="card"><p>Besoin de sponsoriser ? Je cède les droits pour tes ads [sur X mois].</p></div></div>
   </div>
 </section>
 
@@ -258,24 +269,24 @@
      07 — MES SERVICES : 3 cartes
      ================================================================ -->
 <section class="page">
-  <div class="abs anton" style="left:80px;top:80px;font-size:130px">Mes <span style="color:var(--blue)">services</span></div>
+  <div class="abs anton" style="left:80px;top:80px;font-size:130px">Mes <span class="hl">services</span></div>
   <div class="abs hand" style="right:90px;top:110px;font-size:34px;transform:rotate(4deg);text-align:right">tout est fait maison :<br>script, tournage, montage</div>
   <div class="abs" style="left:80px;right:80px;top:330px;display:flex;gap:36px">
-    <div style="flex:1;background:var(--red);color:var(--cream);border-radius:28px;padding:44px 40px;height:490px;transform:rotate(-1.5deg)">
+    <div style="flex:1;background:var(--navy);color:var(--cream);border-radius:28px;padding:44px 40px;height:490px;transform:rotate(-1.5deg)">
       <div class="anton" style="font-size:64px">Vidéos</div>
-      <div class="hand" style="font-size:30px;color:var(--yellow);margin:6px 0 22px">le cœur du métier</div>
+      <div class="hand acc" style="font-size:30px;margin:6px 0 22px">le cœur du métier</div>
       <p>✦ Vidéos de 10 à 60 sec<br>✦ Format vertical 9:16<br>✦ Face cam, voix off, voix in<br>✦ Sous-titres &amp; montage<br>✦ [Avis, unboxing, GRWM]</p>
-      <div class="anton" style="font-size:34px;margin-top:34px">dès [X] €</div>
+      <div class="anton acc" style="font-size:34px;margin-top:34px">dès [X] €</div>
     </div>
-    <div style="flex:1;background:var(--yellow);border-radius:28px;padding:44px 40px;height:490px;margin-top:30px">
+    <div style="flex:1;background:var(--sky);border-radius:28px;padding:44px 40px;height:490px;margin-top:30px">
       <div class="anton" style="font-size:64px">Photos</div>
-      <div class="hand" style="font-size:30px;color:var(--red);margin:6px 0 22px">pour tes fiches &amp; ads</div>
+      <div class="hand" style="font-size:30px;margin:6px 0 22px">pour tes fiches &amp; ads</div>
       <p>✦ Produit seul, mis en scène<br>✦ Selfie avec le produit<br>✦ Photo esthétique / outfit<br>✦ [Lot de X photos]</p>
       <div class="anton" style="font-size:34px;margin-top:34px">dès [X] €</div>
     </div>
-    <div style="flex:1;background:var(--blue);color:var(--cream);border-radius:28px;padding:44px 40px;height:490px;transform:rotate(1.5deg)">
+    <div style="flex:1;background:var(--cream);border:4px solid var(--navy);border-radius:28px;padding:44px 40px;height:490px;transform:rotate(1.5deg)">
       <div class="anton" style="font-size:64px">Concept</div>
-      <div class="hand" style="font-size:30px;color:var(--yellow);margin:6px 0 22px">avant même de filmer</div>
+      <div class="hand" style="font-size:30px;margin:6px 0 22px">avant même de filmer</div>
       <p>✦ Idées &amp; angles créatifs<br>✦ Écriture des hooks<br>✦ Script complet<br>✦ Variantes A/B pour tes pubs</p>
       <div class="anton" style="font-size:34px;margin-top:34px">sur devis</div>
     </div>
@@ -285,33 +296,33 @@
 <!-- ================================================================
      08 — MON MATÉRIEL : bande papier + objets détourés
      ================================================================ -->
-<section class="page" style="background:var(--blue);color:var(--cream)">
+<section class="page navy">
   <div class="abs torn-bottom" style="left:60px;right:60px;top:70px;height:300px;background:var(--cream);transform:rotate(-1.5deg)"></div>
-  <div class="abs anton" style="left:0;right:0;top:120px;text-align:center;font-size:150px;color:var(--blue)">Mon matériel</div>
-  <div class="abs" style="left:0;right:0;top:290px;text-align:center;font-size:21px;color:var(--ink)">Chaque contenu est <b>pensé</b>, <b>tourné</b> et <b>monté</b> avec soin.</div>
+  <div class="abs anton" style="left:0;right:0;top:120px;text-align:center;font-size:150px;color:var(--navy)">Mon matériel</div>
+  <div class="abs" style="left:0;right:0;top:290px;text-align:center;font-size:21px;color:var(--navy)">Chaque contenu est <b>pensé</b>, <b>tourné</b> et <b>monté</b> avec soin.</div>
   <!-- OBJETS : remplace chaque cercle par la photo détourée de ton matériel -->
   <div class="abs" style="left:110px;right:110px;top:460px;display:flex;justify-content:space-between;text-align:center">
-    <div><div class="hand" style="width:240px;height:240px;border-radius:50%;background:#3E5DE6;display:flex;align-items:center;justify-content:center;font-size:28px">photo<br>détourée</div><div class="anton" style="font-size:30px;margin-top:22px">[Smartphone]</div></div>
-    <div style="margin-top:60px"><div class="hand" style="width:240px;height:240px;border-radius:50%;background:#3E5DE6;display:flex;align-items:center;justify-content:center;font-size:28px">photo<br>détourée</div><div class="anton" style="font-size:30px;margin-top:22px">[Micro]</div></div>
-    <div><div class="hand" style="width:240px;height:240px;border-radius:50%;background:#3E5DE6;display:flex;align-items:center;justify-content:center;font-size:28px">photo<br>détourée</div><div class="anton" style="font-size:30px;margin-top:22px">[Ring light]</div></div>
-    <div style="margin-top:60px"><div class="hand" style="width:240px;height:240px;border-radius:50%;background:#3E5DE6;display:flex;align-items:center;justify-content:center;font-size:28px">photo<br>détourée</div><div class="anton" style="font-size:30px;margin-top:22px">[Trépied]</div></div>
+    <div><div class="gear hand">photo<br>détourée</div><div class="anton" style="font-size:30px;margin-top:22px">[Smartphone]</div></div>
+    <div style="margin-top:60px"><div class="gear hand">photo<br>détourée</div><div class="anton" style="font-size:30px;margin-top:22px">[Micro]</div></div>
+    <div><div class="gear hand">photo<br>détourée</div><div class="anton" style="font-size:30px;margin-top:22px">[Ring light]</div></div>
+    <div style="margin-top:60px"><div class="gear hand">photo<br>détourée</div><div class="anton" style="font-size:30px;margin-top:22px">[Trépied]</div></div>
   </div>
-  <div class="abs hand" style="right:90px;bottom:50px;font-size:32px;color:var(--yellow);transform:rotate(-4deg)">+ [logiciel de montage]</div>
+  <div class="abs hand acc" style="right:90px;bottom:50px;font-size:32px;transform:rotate(-4deg)">+ [logiciel de montage]</div>
 </section>
 
 <!-- ================================================================
      09 — COLLABORONS : appel à l'action final
      ================================================================ -->
 <section class="page">
-  <div class="abs" style="left:0;top:0;bottom:0;width:560px;background:var(--red)"></div>
-  <div class="cutout" style="left:80px;bottom:0;width:420px;height:800px">
-    <svg viewBox="0 0 300 640" preserveAspectRatio="none"><circle cx="150" cy="120" r="82" fill="#B92F1B"/><path d="M0 640 C0 330 70 225 150 225 C230 225 300 330 300 640Z" fill="#B92F1B"/></svg>
+  <div class="abs" style="left:0;top:0;bottom:0;width:560px;background:var(--sky)"></div>
+  <div class="cutout" style="left:80px;bottom:0;width:420px;height:800px;color:var(--cream)">
+    <svg viewBox="0 0 300 640" preserveAspectRatio="none"><circle cx="150" cy="120" r="82" fill="#14284B"/><path d="M0 640 C0 330 70 225 150 225 C230 225 300 330 300 640Z" fill="#14284B"/></svg>
     <div class="lbl">photo 3<br>(détourée)</div>
   </div>
-  <div class="abs sticker" style="left:420px;top:110px;transform:rotate(-8deg)">✦ Réponse sous 48h</div>
+  <div class="abs sticker c" style="left:420px;top:110px;transform:rotate(-8deg)">✦ Réponse sous 48h</div>
   <div class="abs" style="left:640px;top:170px;width:740px">
     <div class="anton" style="font-size:136px">Collaborons</div>
-    <div class="anton" style="font-size:136px;color:var(--red)">ensemble !</div>
+    <div class="anton" style="font-size:136px;margin-top:14px"><span class="hl">ensemble !</span></div>
     <p style="margin-top:30px;font-size:23px">Un produit à mettre en avant, une campagne à lancer ? Écris-moi, on en parle.</p>
     <div style="display:flex;flex-direction:column;gap:14px;margin-top:36px;align-items:flex-start">
       <span class="pill">✉ [ton.email@gmail.com]</span>
@@ -319,10 +330,10 @@
       <span class="pill light">♪ TikTok · [@ton_pseudo]</span>
     </div>
   </div>
-  <svg class="arrow" style="left:1170px;top:660px" width="160" height="120" viewBox="0 0 160 120"><path d="M140 10 C120 70 80 95 20 90"/><path d="M38 78 L18 90 L36 104"/></svg>
-  <div class="abs hand" style="left:1200px;top:610px;font-size:30px;transform:rotate(6deg)">c'est par ici</div>
-  <div class="ticker" style="bottom:0;background:var(--ink);color:var(--cream);left:560px">
-    <span>[Food]</span><span>✦</span><span>[Tech]</span><span>✦</span><span>[Sport]</span><span>✦</span><span>[Lifestyle]</span><span>✦</span><span>[Beauté]</span>
+  <svg class="arrow" style="left:1170px;top:680px;color:var(--navy)" width="160" height="120" viewBox="0 0 160 120"><path d="M140 10 C120 70 80 95 20 90"/><path d="M38 78 L18 90 L36 104"/></svg>
+  <div class="abs hand" style="left:1200px;top:630px;font-size:30px;transform:rotate(6deg)">c'est par ici</div>
+  <div class="ticker" style="bottom:0;left:560px">
+    <span>[Food]</span><span class="s">✦</span><span>[Tech]</span><span class="s">✦</span><span>[Sport]</span><span class="s">✦</span><span>[Lifestyle]</span><span class="s">✦</span><span>[Beauté]</span>
   </div>
 </section>
 
